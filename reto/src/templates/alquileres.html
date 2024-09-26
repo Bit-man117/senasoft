@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMINISTRADOR</title>
+    <!-- <link rel="stylesheet" href="../static/css/coordinador.css"> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/alquileres.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/root.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.css') }}">
+    <link rel="icon" href="../static/img/logosenaverde.svg" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="shortcut icon" href="../static/img/logosenaverde.svg" type="image/png">
+    <script src="{{ url_for('static', filename='js/coordinador.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <style>
+        #alquileres {
+            background-color: var(--color-base);
+            color: white !important;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ventana container emergente -->
+
+    <div id="content">
+        <div class="container1">
+            <a class="cerrar" onclick="cerrarEmergentes1()">x</a>
+            <form class="form">
+                <div class="encabezado">
+                    <div class="h1">
+                        <h1>REGISTRO</h1>
+                    </div>
+                    <div class="logosena">
+                        <img id="logosena" src="{{ url_for('static', filename='images/Logo-de-SENA-png-verde.png') }}"
+                            alt="Logo SENA">
+
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        <!-- ventana container emergente2 -->
+
+
+
+        <header>
+            <div class="header">
+
+                <div class="header-img">
+                    <img id="logosena" src="{{ url_for('static', filename='img/logoblanco.png') }}" alt="Logo SENA">
+                    <a href="{{ url_for('admin') }}"><label id="nombre_instructor">{{ nombre
+                            }}</label></a>
+
+                </div>
+
+                <div class="header-navbar">
+
+                    <nav>
+                        <ul>
+
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main>
+
+            {% include 'menuadmin.html' %}
+
+
+            <div class="contenedor2">
+                <div class="busqueda">
+
+                    <input type="text" id="searchInput" onkeyup="filterGallery()"
+                        placeholder="Buscar por descripción...">
+                </div>
+
+                <div class="contents">
+
+                    <div class="gallery">
+                        {% for bici in bicis %}
+                        <div class="gallery-item active">
+                            <img src="data:image/jpeg;base64,{{ bici[6] }}" alt="{{ bici[1] }}" class="img-fluid">
+                            <p class="description">{{ bici[1] }}</p>
+                            <p class="description">Tarifa: ${{ bici[3] }}</p>
+                            <button class="solicitar-btn btn btn-primary"
+                                onclick="devolverBicicleta({{ bici[0] }})">Devolver</button>
+                            <!-- ID de la bicicleta -->
+                        </div>
+                        {% endfor %}
+                    </div>
+
+                    <div id="noResults" style="display: none; margin-top: 20px;">No existen resultados.</div>
+                </div>
+                <script>
+                    function devolverBicicleta(id_bicicleta) {
+                        fetch('/devolver', {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                            },
+                            body: JSON.stringify({ id_bicicleta: id_bicicleta })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Éxito',
+                                    text: 'Bicicleta devuelta correctamente.',
+                                }).then(() => {
+                                    location.reload(); // Recargar la página después de cerrar la alerta
+                                });
+                            } else {
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    text: 'Error al devolver la bicicleta.',
+                                });
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Ocurrió un error',
+                                text: 'Ocurrió un error al procesar la devolución.',
+                            });
+                        });
+                    }
+                </script>
+                
+
+            </div>
+        </main>
+
+
+    </div>
+    <script>
+        function filterGallery() {
+            const input = document.getElementById('searchInput');
+            const filter = input.value.toLowerCase();
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            let hasResults = false; // Variable para controlar si hay resultados
+
+            galleryItems.forEach(item => {
+                const description = item.querySelector('.description').textContent.toLowerCase();
+                if (description.includes(filter)) {
+                    item.style.display = ''; // Muestra el elemento
+                    hasResults = true; // Hay al menos un resultado
+                } else {
+                    item.style.display = 'none'; // Oculta el elemento
+                }
+            });
+
+            // Muestra o oculta el mensaje de "No existen resultados"
+            const noResults = document.getElementById('noResults');
+            noResults.style.display = hasResults ? 'none' : 'block';
+        }
+
+
+    </script>
+
+</body>
+
+</html>

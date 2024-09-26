@@ -1,0 +1,488 @@
+ body {
+     font-family: 'Poppins', sans-serif;
+     /* background: #f5f7fa; */
+     margin: 0;
+     display: flex;
+     height: 100vh;
+     background-image: var(--background-image-url);
+     background-repeat: no-repeat;
+     background-size: cover;
+     overflow: hidden;
+     transition: 1s;
+ }
+
+ .sect-izquierda {
+     flex: 1;
+     /* background-color: #007bff; */
+
+     color: var(--color-base-fuente);
+     display: flex;
+     /* justify-content: center; */
+     align-items: end;
+     /* text-align: center; */
+     padding: 20px;
+ }
+
+ h2 {
+     padding: 0%;
+     margin: 0%;
+ }
+
+ .poster {
+     background-color: red;
+     /* border: 1px solid #ddd; */
+     border-radius: 10px;
+     padding: 2%;
+     text-align: center;
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     height: 80%;
+     /* width: 50%; */
+
+     color: #000;
+     display: flex;
+     align-items: center;
+     flex-direction: column;
+     justify-content: center;
+ }
+
+ .poster:hover {
+     transition: 1s;
+     background-color: white;
+ }
+
+ .poster img {
+
+     /* width: 100%; */
+     height: 100%;
+     /* background-color: var(--color-base); */
+     /* height: auto; */
+     /* border-radius: 5px; */
+ }
+
+ /* Estilo para el footer */
+ .footer {
+     position: absolute;
+     bottom: 0;
+     left: 0;
+     width: 100%;
+     height: 25%;
+     /* background-color: #fff;   */
+     text-align: center;
+     padding: 8% 10% 20% 10%;
+     box-sizing: border-box;
+     z-index: 1;
+ }
+
+ .copyright {
+     /* width: 100%;
+    height: 80%; */
+     /* background-color: red; */
+     font-size: 1.8vh;
+ }
+
+ /* Estilo para el SVG */
+ .svg-icon {
+     width: 100%;
+     height: 100%;
+     /* Mantiene la proporción del SVG */
+     fill: var(--color-base);
+     /* Cambia el color usando la variable CSS */
+ }
+
+ .sect-derecha {
+     transition: 1s;
+     /* overflow: auto; */
+     width: 20%;
+     background: rgba(255, 255, 255, 0.651);
+     padding: 40px;
+     display: flex;
+     flex-direction: column;
+     align-items: flex-end;
+     justify-content: center;
+     position: relative;
+
+ }
+
+ .sect-derecha:hover {
+     background-color: rgba(255, 255, 255, 0.642);
+     transition: 1s;
+ }
+
+ .btn-consulta {
+     background: linear-gradient(45deg, rgba(255, 255, 255, 0.192), white);
+     color: #0056b3;
+     font-weight: bold;
+     width: 70%;
+     /* padding: 15px 25px; */
+     padding: 7px 25px;
+
+     border-radius: 50px 0px 0px 50px;
+     text-decoration: none;
+     /* font-weight: 600; */
+     position: absolute;
+     /* font-size: 25px; */
+     font-size: 100%;
+     z-index: 5;
+     /* top: 110px; */
+     top: 14.5%;
+     left: 60%;
+     transform: translateX(-50%);
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+     transition: all 0.3s ease;
+ }
+
+ .btn-consulta:hover {
+     width: 110%;
+     background: linear-gradient(45deg, white, rgba(255, 255, 255, 0.527));
+     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+     transform: translateX(-40%) translateY(-2px);
+     color: var(--color-base);
+     font-weight: bold;
+     transition: 0.5s;
+ }
+
+ .btn-permisos {
+     background: linear-gradient(45deg, var(--color-base), rgba(0, 0, 0, 0.486));
+     color: var(--color-base-fuente);
+     width: 100%;
+     /* padding: 15px 25px; */
+     /* padding: 15px 35px; */
+     padding: 4% 10%;
+     border-radius: 50px 0px 0px 50px;
+     text-decoration: none;
+     font-weight: 600;
+     position: absolute;
+     /* font-size: 25px; */
+     font-size: 120%;
+     /* top: 40px; */
+     top: 4.5%;
+     left: 50%;
+     transform: translateX(-50%);
+     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+     transition: all 0.3s ease;
+ }
+
+ .btn-permisos:hover {
+     width: 110%;
+     background: linear-gradient(45deg, white, rgba(255, 255, 255, 0.527));
+     box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+     transform: translateX(-50%) translateY(-2px);
+     color: var(--color-base);
+     font-weight: bold;
+     transition: 0.5s;
+ }
+
+ .container:hover input[type='number'],
+ .container:hover input[type='password'] {
+     background-color: light-dark(rgba(184, 184, 184, 0.329), rgba(70, 90, 126, 0.4));
+     transition: 1s;
+
+ }
+
+
+ .container:hover {
+     background: rgba(250, 249, 249, 0.855);
+     transition: 1s;
+ }
+
+ .container {
+     z-index: 2;
+     transition: 1s;
+     background: #ffffffa0;
+     backdrop-filter: blur(10px);
+     border-radius: 10px;
+     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+     /* padding: 40px; */
+     padding: 14%;
+
+     width: 100%;
+     /* max-height: 50%; */
+     position: relative;
+     /* max-width: 100%; */
+     margin-right: 20%;
+     /* margin-top: 25%; */
+     text-align: center;
+
+ }
+
+ h1 {
+     /* display: flex; */
+     font-size: 5vh;
+     font-weight: 600;
+     color: var(--color-base);
+     padding: 0%;
+     margin: 0%;
+     /* margin-bottom: 20px; */
+     /* background-color: red; */
+ }
+
+ .form-login {
+     /* background-color: red; */
+     width: 100%;
+     height: 10%;
+     margin-bottom: 20px;
+     text-align: left;
+ }
+
+ .form-login label {
+     display: block;
+     font-weight: 400;
+     color: #666;
+     margin-bottom: 8px;
+     /* margin-bottom: 2%; */
+ }
+
+ .form-login input {
+     width: 100%;
+     /* padding: 10px; */
+     padding: 3%;
+     border-radius: 5px;
+     border: 1px solid #ddd;
+     font-size: 14px;
+     color: #333;
+     transition: border-color 0.3s;
+     box-sizing: border-box;
+ }
+
+ .form-login input:focus {
+     border-color: var(--color-base);
+
+     outline: none;
+ }
+
+ .btn {
+     background-color: var(--color-base);
+     color: var(--color-base-fuente);
+     padding: 12px 20px;
+     border-radius: 5px;
+     border: none;
+     font-weight: 600;
+     cursor: pointer;
+     transition: background-color 0.3s;
+     width: 100%;
+ }
+
+ .btn:hover {
+     background-color: var(--color-base-hover);
+ }
+
+
+
+ /* -----------PUBLICACIONES------ */
+
+ .publicaciones {
+     width: 50%;
+     height: 30%;
+     margin: 0 auto;
+     padding: 20px;
+     /* background-color: #f9f9f9; */
+     /* backdrop-filter: blur(5px); */
+     border: 1px solid #ccc;
+     border-radius: 8px;
+     transition: 1s;
+ }
+
+ .publicacion:hover {
+     scale: 1.1;
+     transition: 1s;
+ }
+
+ .publicacion {
+     transition: 1s;
+     margin-bottom: 20px;
+     padding: 15px;
+     border: 1px solid #e0e0e0;
+     border-radius: 5px;
+     background-color: #ffffff9d;
+     backdrop-filter: blur(5px);
+ }
+
+
+ .publicacion {
+     border: 1px solid #ccc;
+     /* Borde para cada publicación */
+     border-radius: 8px;
+     /* Esquinas redondeadas */
+     padding: 16px;
+     /* Espaciado interno */
+     width: 300px;
+     /* Ancho fijo para cada publicación */
+     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+     /* Sombra para dar profundidad */
+ }
+
+ .evento-foto {
+     width: 100%;
+     /* Hace que la imagen ocupe el ancho completo del contenedor */
+     height: auto;
+     /* Mantiene la proporción de la imagen */
+     max-height: 200px;
+     /* Altura máxima para uniformidad */
+     object-fit: cover;
+     /* Recorta la imagen si es necesario para ajustarse al contenedor */
+ }
+
+ .publicacion h2 {
+     font-size: 1.5em;
+     color: #333;
+ }
+
+ .publicacion p {
+     font-size: 1em;
+     color: #555;
+ }
+
+ .fecha {
+     display: block;
+     margin-top: 10px;
+     font-size: 0.9em;
+     color: #999;
+ }
+
+ /* ------------------------- */
+
+ /* -----MAPAS------ */
+ #map {
+     display: none;
+     position: absolute;
+     bottom: 1%;
+     left: 0.5%;
+     height: 200px;
+     width: 200px;
+     transition: all 0.3s ease;
+     /* Suaviza la transición */
+     overflow: hidden;
+     /* Oculta el desbordamiento */
+     cursor: pointer;
+     transition: 1s;
+     /* Cambia el cursor para indicar que es clickeable */
+ }
+
+ /* Estilos del modal */
+ .modal {
+     transition: 1s;
+     display: none;
+     /* Oculto por defecto */
+     position: fixed;
+     z-index: 1000;
+     left: 0;
+     top: 0;
+     width: 100%;
+     height: 100%;
+     background-color: rgba(0, 0, 0, 0.8);
+     /* Fondo oscuro */
+     overflow: auto;
+     /* Agrega scroll si es necesario */
+ }
+
+ .modal-content {
+     transition: 1s;
+     position: relative;
+     margin: auto;
+     padding: 0;
+     width: 80%;
+     max-width: 800px;
+     /* Ancho máximo del mapa en el modal */
+     height: 80%;
+     /* Alto del mapa en el modal */
+ }
+
+ #fullMap {
+     transition: 1s;
+     width: 100%;
+     height: 100%;
+     transition: 1s;
+ }
+
+ .close {
+     color: white;
+     float: right;
+     font-size: 28px;
+     font-weight: bold;
+     padding: 10px;
+ }
+
+ .close:hover,
+ .close:focus {
+     color: #bbb;
+     text-decoration: none;
+     cursor: pointer;
+ }
+
+ /* ---------------- */
+
+
+
+ /* -----SLIDER DE IMAGENES------- */
+
+ .gallery {
+     display: grid;
+     margin: 0 auto;
+     grid-template-columns: repeat(3, 1fr);
+     /* Ahora se mostrarán 3 columnas */
+     grid-gap: 20px;
+     padding: 20px;
+     /* background-color: #fff; */
+     /* backdrop-filter: blur(5px); */
+     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+     border-radius: 10px;
+     width: 100%;
+     zoom: 60%;
+     max-width: 900px;
+ }
+
+ .gallery-item {
+     display: none;
+     /* Ocultamos todas las publicaciones inicialmente */
+     overflow: hidden;
+     border-radius: 10px;
+     transition: transform 0.3s ease, opacity 0.3s ease;
+     opacity: 0;
+     /* Inicialmente, las publicaciones están ocultas */
+     padding: 20px;
+     background-color: #fafafa78;
+     backdrop-filter: blur(5px);
+     text-align: center;
+ }
+
+ .gallery-item.active {
+     display: block;
+     /* Mostramos solo las publicaciones activas */
+     opacity: 1;
+ }
+
+ .gallery-item img {
+     width: 100%;
+     height: auto;
+     display: block;
+     border-radius: 10px;
+ }
+
+ .description {
+     margin: 15px 0;
+     font-size: 1rem;
+     color: #333;
+ }
+
+ .solicitar-btn {
+     padding: 10px 20px;
+     background-color: #007BFF;
+     color: white;
+     border: none;
+     border-radius: 5px;
+     cursor: pointer;
+     transition: background-color 0.3s ease;
+ }
+
+ .solicitar-btn:hover {
+     background-color: #0056b3;
+ }
+
+ .gallery-item.active:hover {
+
+     transform: scale(2) translateY(-30%);
+     z-index: 4;
+     /* Aumenta el valor para escalar y desplazar hacia arriba */
+     transition: transform 0.3s ease;
+     /* Asegúrate de agregar una transición suave */
+ }

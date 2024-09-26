@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMINISTRADOR</title>
+    <link rel="stylesheet" href="../static/css/coordinador.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/coordinador.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.css') }}">
+    <link rel="icon" href="../static/img/logosenaverde.svg" type="image/png">
+    <link rel="shortcut icon" href="../static/img/logosenaverde.svg" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="{{ url_for('static', filename='js/coordinador.js') }}"></script>
+
+</head>
+
+<body>
+    <!-- ventana container emergente -->
+    {% include 'pantallacargacoor.html' %}
+    <div id="content">
+        <div class="container1">
+            <a class="cerrar" onclick="cerrarEmergentes1()">x</a>
+            <form class="form">
+                <div class="encabezado">
+                    <div class="h1">
+                        <h1>REGISTRO</h1>
+                    </div>
+                    <div class="logosena">
+                        <img id="logosena" src="{{ url_for('static', filename='images/Logo-de-SENA-png-verde.png') }}"
+                            alt="Logo SENA">
+
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        <!-- ventana container emergente2 -->
+
+
+
+        <header>
+            <div class="header">
+
+                <div class="header-img">
+                    <img id="logosena" src="{{ url_for('static', filename='img/logoblanco.png') }}"
+                        alt="Logo SENA">
+                    <a href="{{ url_for('admin') }}"><label id="nombre_instructor">{{ usuario_nombre
+                            }}</label></a>
+
+                </div>
+
+                <div class="header-navbar">
+
+                    <nav>
+                        <ul>
+ 
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main>
+
+            {% include 'menuadmin.html' %}
+
+
+
+            <div class="contenedor2">
+                <img src="{{ url_for('static', filename='img/senafondo3.webp') }}" alt="">
+
+            </div>
+        </main>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+
+</html>

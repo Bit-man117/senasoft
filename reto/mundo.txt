@@ -1,0 +1,101 @@
+import json
+
+# Lista de regionales del SENA con sus coordenadas
+def obtener_regionales_sena():
+    return [
+        {"nombre": "SENA Bogotá", "lat": 4.60971, "lon": -74.08175},
+        {"nombre": "SENA Antioquia", "lat": 6.25184, "lon": -75.56359},
+        {"nombre": "SENA Valle del Cauca", "lat": 3.42332, "lon": -76.52493},
+        {"nombre": "SENA Atlántico", "lat": 10.96389, "lon": -74.79694},
+        {"nombre": "SENA Santander", "lat": 7.11381, "lon": -73.1198},
+        {"nombre": "SENA Bolívar", "lat": 10.40236, "lon": -75.51478},
+        {"nombre": "SENA Cundinamarca", "lat": 4.60017, "lon": -74.14361},
+        {"nombre": "SENA Cesar", "lat": 10.43333, "lon": -74.18883},
+        {"nombre": "SENA Huila", "lat": 2.72672, "lon": -75.30028},
+        {"nombre": "SENA Magdalena", "lat": 10.47371, "lon": -74.20393},
+        {"nombre": "SENA Nariño", "lat": 1.21253, "lon": -77.27365},
+        {"nombre": "SENA Norte de Santander", "lat": 7.90889, "lon": -72.50539},
+        {"nombre": "SENA Quindío", "lat": 4.53611, "lon": -75.64167},
+        {"nombre": "SENA Risaralda", "lat": 4.81134, "lon": -75.69719},
+        {"nombre": "SENA Sucre", "lat": 9.31314, "lon": -75.20271},
+        {"nombre": "SENA Tolima", "lat": 4.43711, "lon": -75.22004},
+        {"nombre": "SENA Caquetá", "lat": 1.57351, "lon": -75.61682},
+        {"nombre": "SENA San Andrés y Providencia", "lat": 12.58333, "lon": -81.70000}
+    ]
+
+# Función para generar el HTML para Google Maps
+def generar_mapa(regionales):
+    api_key = 'AIzaSyChCJqlCC0N8Adffv6VLpHZDh1DFT8weL4'  # Reemplaza con tu clave de API de Google Maps
+    icon_url = 'https://certificadossena.net/wp-content/uploads/2022/10/logo-sena-negro-svg-2022.svg'  # Reemplaza con la URL de tu icono
+    icon_size = '20'  # Ajusta el tamaño deseado del icono
+    mapa_html = """
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Regional SENA en Colombia</title>
+        <script src="https://maps.googleapis.com/maps/api/js?key={}&callback=initMap" async defer></script>
+        <style>
+            body {{ font-family: Arial, sans-serif; }}
+            #map {{ height: 500px; width: 50%; }}
+        </style>
+        <script>
+            function initMap() {{
+                var colombiaBounds = {{
+                    north: 12.4687,  // Latitud máxima de Colombia
+                    south: 1.412,    // Latitud mínima de Colombia
+                    east: -66.8515,  // Longitud máxima de Colombia
+                    west: -78.9372   // Longitud mínima de Colombia
+                }};
+                
+                var map = new google.maps.Map(document.getElementById('map'), {{
+                    zoom: 5,  // Ajusta el zoom para mostrar bien toda Colombia
+                    center: {{lat: 4.5709, lng: -74.2973}},  // Centro de Colombia
+                    restriction: {{
+                        latLngBounds: colombiaBounds,
+                        strictBounds: false  // Permite zoomar fuera de los límites
+                    }}
+                }});
+                
+                // Añadir los marcadores
+    """.format(api_key)
+
+    for regional in regionales:
+        mapa_html += """
+                var marker = new google.maps.Marker({{
+                    position: {{lat: {}, lng: {}}},
+                    map: map,
+                    title: '{}',
+                    icon: {{
+                        url: '{}',
+                        scaledSize: new google.maps.Size({}, {})  // Tamaño del icono
+                    }}
+                }});
+        """.format(regional['lat'], regional['lon'], regional['nombre'], icon_url, icon_size, icon_size)
+
+    mapa_html += """
+            }
+        </script>
+    </head>
+    <body>
+        <h3>Regional SENA en Colombia</h3>
+        <div id="map"></div>
+    </body>
+    </html>
+    """
+    
+    return mapa_html
+
+# Función principal
+def main():
+    regionales = obtener_regionales_sena()
+    mapa_html = generar_mapa(regionales)
+    
+    try:
+        with open('mapa_regionales_sena.html', 'w') as f:
+            f.write(mapa_html)
+        print("Mapa generado exitosamente.")
+    except Exception as e:
+        print(f"Error al escribir el archivo: {e}")
+
+if __name__ == '__main__':
+    main()

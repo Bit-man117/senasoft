@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Permisos</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="icon" href="static/images/icon.png" type="image/png">
+    <link rel="shortcut icon" href="../static/img/logosenaverde.svg" type="image/png">
+    <link rel="stylesheet" href="../static/css/permisos.css">
+    <link rel="stylesheet" href="../static/css/root.css">
+
+</head>
+
+<body>
+
+
+    <a id="atras" href="../template/index.html">
+        <img id="btnAtras" src="../static/img/iconatras.png" alt="Botón">
+    </a>
+    <a href="{{ url_for('index') }}" id="btnVolver" class="btn-responsive">Volver a la página principal</a>
+
+    <div class="container">
+        <div class="form-group">
+            <form class="formconsulta" id="formconsulta" action="/consultapermiso" method="POST">
+                <label class="consultapermiso-label">ID del Aprendiz</label>
+                <div class="form-inline">
+                    <input type="number" name="numero_documento_permisos" id="search__input"
+                        placeholder="Ingrese su Identificacion" value="{{ numero_documento }}">
+                    <button type="submit">Buscar</button>
+                </div>
+            </form>
+        </div>
+        <form id="search-form" action="/guardar_permiso" method="post" enctype="multipart/form-data">
+            <!-- Input para buscar por ID y botón de buscar en la misma línea -->
+
+            <input type="hidden" name="documento_aprendiz_permisos" id="documentoAprendizHidden"
+                value="{{ numero_documento }}">
+            <!-- Inputs con información deshabilitada en la misma línea -->
+            <div class="form-row">
+                <div class="form-group name">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" value="{{ nombre_aprendiz }}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="ficha-number">No. Ficha</label>
+                    <input type="text" name="numero_ficha_permisos" id="NumeroFicha" autocomplete="off" disabled
+                        value="{{ numero_ficha }}">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group name">
+                    <label for="name">Modelo</label>
+                    <input type="text" id="name" name="name" value="{{ modelo_vehiculo }}" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="ficha-number">ID </label>
+                    <input type="text" name="numero_ficha_permisos" id="NumeroFicha" autocomplete="off" disabled
+                        value="{{ id_vehiculo }}">
+                </div>
+
+                <div class="form-group">
+                    <!-- <label for="imagen-vehiculo">Imagen del Vehículo</label> -->
+                    <!-- Solo muestra la imagen -->
+                    <img src="../static/img/Charla informativa.webp" alt="Imagen del Vehículo"
+                        style="width: 200px; height: auto;">
+                </div>
+
+            </div>
+
+            <!-- Botón para enviar el formulario -->
+            <div class="form-group">
+                <button id="btn" type="submit">Enviar</button>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script src="{{ url_for('static', filename='js/permisos.js') }}"></script>
+
+
+</body>
+
+</html>

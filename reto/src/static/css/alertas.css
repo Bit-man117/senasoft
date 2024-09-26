@@ -1,0 +1,17 @@
+#mensaje-error {
+    color: red;
+    margin-bottom: 10px;
+    display: none;
+
+}
+
+
+#login-form input.error {
+    border-color: red;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
+}
+
+#login-form input.error:focus {
+    border-color: #21801f;
+    box-shadow: none;
+}

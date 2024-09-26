@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+
+    overflow: hidden;
+}
+
+.header {
+    /* border: 1px solid white; */
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    display: flex;
+    background-color: #4e8e37;
+    color: #fff;
+    /* Color de texto en el encabezado */
+
+}
+
+.header-img {
+
+    /* background-color: rgba(255, 255, 0, 0.311); */
+    width: 50%;
+    font-weight: bold;
+    padding-left: 2%;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+
+}
+
+.header-img a {
+    margin-left: 2%;
+    font-size: 25px;
+    color: white;
+    text-decoration: none;
+}
+
+img {
+
+    width: 60px;
+    /* background-color: wheat; */
+}
+
+.header-navbar {
+    display: flex;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    height: 0px;
+    /* background-color: rgba(255, 255, 0, 0.329); */
+}
+
+nav {
+    display: flex;
+    justify-content: right;
+    /* border: 1px solid red; */
+    width: 100%;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+
+    /* background-color: red; */
+    text-align: right;
+
+}
+
+nav ul li {
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    padding: 10px 20px;
+    /* border: 1px solid; */
+    width: 100%;
+    height: 50px;
+
+}
+
+nav ul li {
+
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    /* border: 1px solid yellow; */
+
+    width: auto;
+    /* Ancho automático para adaptarse al contenido */
+    height: 50px;
+    margin-right: 10px;
+    /* Margen derecho para separar los elementos <li> */
+}
+
+nav ul li:hover {
+    box-shadow: 5px 5px 10px rgba(255, 255, 255, 0.3);
+    /* Sombra con desplazamiento en X e Y, tamaño y color */
+    border-left: 10px;
+    border-bottom: 2px solid white;
+    /* background-color: #ffffff86; */
+}
+
+nav ul li a {
+    text-decoration: none;
+    /* Quítale la decoración subrayada */
+    font-size: 20px;
+    color: #fff;
+    /* Color de texto de los enlaces del menú */
+    font-weight: bold;
+    transition: color 0.3s;
+    /* Transición suave para el cambio de color al hacer hover */
+}
+
+/* --------------------------- */
+main {
+    display: flex;
+    /* background-color: #ccc; */
+
+
+    background-color: #4e8e37;
+}
+
+
+
+/* BARRA DE OPCIONES */
+
+
+/* -------------------- */
+
+
+#cerrarsesion:hover {
+    /* font-size: 20px; */
+    color: rgb(167, 48, 48);
+    /* background-color: rgb(255, 0, 0); */
+}
+
+.contenedor2 {
+
+    border-radius: 10px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 78%;
+    height: 85vh;
+    border: 1px solid;
+    background-color: #ffffff;
+    overflow: hidden;
+}
+
+
+.contenedor2 img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+
+/* EMERGENTE CONTAINER */
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #1eff00;
+    /* Color rojo, puedes cambiarlo según tu preferencia */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cerrar:hover {
+    color: rgb(167, 48, 48);
+    /* Cambia el color a un tono más claro de rojo */
+}
+
+.container1 {
+    zoom: 90%;
+    /* background-color: rgba(0, 0, 0, 0.759); */
+    backdrop-filter: blur(0.4rem);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+}
+
+#btnImagen {
+
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    float: right;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+}
+
+.form {
+    /* zoom: 80%; */
+    transform: scale(1.0);
+    background-color: rgb(255, 255, 255);
+    padding: 1% 4%;
+    margin: auto;
+    width: 35%;
+    height: 90%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.encabezado {
+    display: flex;
+    /* justify-content: space-between; */
+    border-bottom: 1px solid black;
+}
+
+h1 {
+
+    /* background-color: rgba(0, 0, 255, 0.322); */
+    margin-left: 10px;
+    padding-top: 3%;
+    color: #4e8e37;
+    font-size: 1.8vw;
+}
+
+.h1 {
+    /* background-color: red; */
+    margin: auto;
+    width: 80%;
+}
+
+.logosena {
+    /* background-color: yellow; */
+    width: 20%;
+}
+
+.logosena img {
+    width: 100%;
+    float: right;
+}
+
+
+.cajas {
+    padding-left: 4%;
+    margin-bottom: 4%;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid black;
+
+}
+
+select {
+    padding-left: 4%;
+    margin-bottom: 5%;
+    width: 100%;
+    height: 40px;
+    border-radius: 4px;
+    border: 1px solid black;
+}
+
+#boton {
+
+    margin-top: 10px;
+    padding: 10px 20px;
+    width: 100%;
+    color: white;
+    background-color: #4e8e37;
+    border-radius: 4px;
+    border: none;
+
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* ventana container emergente2 */
+
+.cerrar {
+    position: absolute;
+    top: 10px;
+    right: 30px;
+    font-size: 40px;
+    font-weight: bold;
+    color: #1eff00;
+    /* Color rojo, puedes cambiarlo según tu preferencia */
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.cerrar:hover {
+    color: rgb(167, 48, 48);
+    /* Cambia el color a un tono más claro de rojo */
+}
+
+.container2 {
+    /* background-color: rgba(0, 0, 0, 0.759); */
+    backdrop-filter: blur(0.4rem);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+}
+
+#btnImagen {
+
+    position: absolute;
+    top: 30px;
+    right: 50px;
+    float: right;
+    width: 90px;
+    height: 90px;
+    cursor: pointer;
+}
+
+.form2 {
+    /* zoom: 80%; */
+    transform: scale(1.0);
+    background-color: rgb(255, 255, 255);
+    padding: 1% 4%;
+    margin: auto;
+    width: 35%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+}
+
+.encabezado2 {
+    display: flex;
+    /* justify-content: space-between; */
+    border-bottom: 1px solid black;
+}
+
+h1 {
+
+    /* background-color: rgba(0, 0, 255, 0.322); */
+    margin-left: 10px;
+    padding-top: 3%;
+    color: #4e8e37;
+    font-size: 1.8vw;
+}
+
+.h2 {
+    /* background-color: red; */
+    margin: auto;
+    width: 80%;
+}
+
+.logosena2 {
+    /* background-color: yellow; */
+    width: 20%;
+}
+
+.logosena2 img {
+    width: 100%;
+    float: right;
+}
+
+
+.cuerpo2 {
+    zoom: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 18px;
+
+    /* background-color: aqua; */
+    width: 100%;
+    height: 70%;
+
+}
+
+.cuerpo-recuperacion2 {
+
+
+    /* background-color: red; */
+    /* border: 1px solid black; */
+    padding: 28px 4px;
+
+    width: 80%;
+    height: 100%;
+}
+
+
+.archivo {
+    margin-bottom: 25px;
+}
+
+#boton {
+
+    margin-top: 10px;
+    padding: 10px 20px;
+    width: 100%;
+    color: white;
+    background-color: #4e8e37;
+    border-radius: 4px;
+    border: none;
+
+}
+

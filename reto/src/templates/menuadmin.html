@@ -1,0 +1,36 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/menucoordinador.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+<div class="contenedor">
+    <div class="contenedor-cuadro">
+        <div class="sidebar">
+            <a id="Registrar" href="{{ url_for('coorregistrar') }}" style="color: #4CAF50;">
+                <i class="fa-solid fa-folder-plus"></i>
+                <p class="sidebartext">Registrar</p>
+            </a>
+            <a id="ubicaciones" href="{{ url_for('ubicaciones') }}" style="color: #2196F3;">
+                <i class="fa-solid fa-map-marker-alt"></i>
+                <p class="sidebartext">Ubicaciones</p>
+            </a>
+            <a id="alquileres" href="{{ url_for('alquileres') }}" style="color: #FF9800;">
+                <i class="fa-solid fa-file-contract"></i>
+                <p class="sidebartext">Alquileres</p>
+            </a>
+
+
+
+            <a id="abrirModal2">
+                <i class="fa-solid fa-key"></i> <!-- Icono de cambio de contraseña -->
+                <p class="sidebartext">Cambiar contraseña</p>
+            </a>
+            <a id="cerrarsesion" href="{{ url_for('logout') }}" style="color: #f32121;">
+                <i class="fa-solid fa-right-to-bracket"></i> <!-- Icono de cerrar sesión -->
+                <p class="sidebartext">Cerrar Sesión</p>
+
+            </a>
+
+        </div>
+    </div>
+</div>

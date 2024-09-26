@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMINISTRADOR</title>
+    <link rel="stylesheet" href="../static/css/coordinador.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/coordinador.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.css') }}">
+    <link rel="icon" href="../static/img/logosenaverde.svg" type="image/png">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="shortcut icon" href="../static/img/logosenaverde.svg" type="image/png">
+    <script src="{{ url_for('static', filename='js/coordinador.js') }}"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/root.css') }}">
+
+    <style>
+        #ubicaciones {
+            background-color: var(--color-base);
+            color: white !important;
+        }
+
+        #mapContainer {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- ventana container emergente -->
+
+    <div id="content">
+        <div class="container1">
+            <a class="cerrar" onclick="cerrarEmergentes1()">x</a>
+            <form class="form">
+                <div class="encabezado">
+                    <div class="h1">
+                        <h1>REGISTRO</h1>
+                    </div>
+                    <div class="logosena">
+                        <img id="logosena" src="{{ url_for('static', filename='images/Logo-de-SENA-png-verde.png') }}"
+                            alt="Logo SENA">
+
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        <!-- ventana container emergente2 -->
+
+
+
+        <header>
+            <div class="header">
+
+                <div class="header-img">
+                    <img id="logosena" src="{{ url_for('static', filename='img/logoblanco.png') }}" alt="Logo SENA">
+                    <a href="{{ url_for('admin') }}"><label id="nombre_instructor">{{ usuario_nombre
+                            }}</label></a>
+
+                </div>
+
+                <div class="header-navbar">
+
+                    <nav>
+                        <ul>
+
+                        </ul>
+                    </nav>
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <main>
+
+            {% include 'menuadmin.html' %}
+
+
+
+            <div class="contenedor2" id="mapContainer">
+                <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Inicializa el mapa
+                        var map = L.map('mapContainer').setView([7.0631, -74.1952], 13); // Centro de Barrancabermeja
+
+                        // Capa de mapa
+                        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                            maxZoom: 18,
+                            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                        }).addTo(map);
+
+                        // Icono de bicicleta
+                        var bicycleIcon = L.icon({
+                            iconUrl: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/41/Bicycle_icon.svg/1200px-Bicycle_icon.svg.png',
+                            iconSize: [32, 32],
+                            iconAnchor: [16, 32],
+                            popupAnchor: [0, -32]
+                        });
+
+                        // Función para agregar bicicletas al mapa
+                        var bicycles = [];
+                        function addBicycles() {
+                            for (var i = 0; i < 20; i++) { // Número de bicicletas
+                                var lat = 7.0631 + (Math.random() - 0.5) * 0.1; // Rango de movimiento
+                                var lng = -74.1952 + (Math.random() - 0.5) * 0.1;
+                                var bicycleMarker = L.marker([lat, lng], { icon: bicycleIcon }).addTo(map);
+                                bicycles.push(bicycleMarker);
+                            }
+                        }
+
+                        // Función para mover las bicicletas
+                        function moveBicycles() {
+                            bicycles.forEach(function (marker) {
+                                var latLng = marker.getLatLng();
+                                var newLat = latLng.lat + (Math.random() - 0.5) * 0.001; // Rango de movimiento
+                                var newLng = latLng.lng + (Math.random() - 0.5) * 0.001;
+                                marker.setLatLng([newLat, newLng]);
+                            });
+                        }
+
+                        // Agregar bicicletas al mapa
+                        addBicycles();
+
+                        // Mover bicicletas cada 500 ms
+                        setInterval(moveBicycles, 500);
+                    });
+                </script>
+            </div>
+
+
+        </main>
+
+        <footer>
+
+        </footer>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COORDINADOR</title>
+    <!-- <link rel="stylesheet" href="../static/css/coordinador.css"> -->
+    <link rel="stylesheet" href="../static/css/coorpermisosfichas.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/coorpermisosfichas.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.css') }}">
+    <link rel="icon" href="static/images/icon.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="shortcut icon" href="static/images/icon.png" type="image/png">
+    <script src="{{ url_for('static', filename='js/coordinador.js') }}"></script>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            z-index: 1;
+        }
+
+        th,
+        td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+
+
+</head>
+
+<body>
+    <!-- ventana container emergente -->
+
+    <!-- ventana container emergente2 -->
+
+
+
+    <header>
+        <div class="header">
+
+            <div class="header-img">
+                <img id="logosena" src="{{ url_for('static', filename='images/Logo-de-SENA-png-verde copia.png') }}"
+                    alt="Logo SENA">
+                <a href="{{ url_for('coordinador') }}"><label id="nombre_instructor">{{ usuario_nombre }}</label></a>
+
+            </div>
+
+            <div class="header-navbar">
+
+                <h2>PERMISOS FICHA COMPLETA</h2>
+
+            </div>
+
+        </div>
+
+    </header>
+
+    <main>
+        {% include 'menucoordinador.html' %}
+
+
+
+        <div class="contenedor2">
+            <div class="form">
+                <div class="cuerpo">
+                    <link rel="stylesheet" type="text/css"
+                        href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+                    <!-- JavaScript de jQuery (necesario para DataTables) -->
+                    <script type="text/javascript" charset="utf8"
+                        src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+                    <!-- JavaScript de DataTables -->
+                    <script type="text/javascript" charset="utf8"
+                        src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#tabla-ficha').DataTable({
+                                "language": {
+                                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                                    "zeroRecords": "No se encontraron registros",
+                                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                                    "infoEmpty": "No hay registros disponibles",
+                                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                                    "search": "Buscar:",
+                                    "paginate": {
+                                        "first": "Primero",
+                                        "last": "Último",
+                                        "next": "Siguiente",
+                                        "previous": "Anterior"
+                                    },
+                                },
+                                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                                "pageLength": 10,
+                                // Permite el desplazamiento horizontal
+
+                                "scrollY": "calc(80vh - 100px)", // Fija la altura del área de desplazamiento
+                                "pagingType": "full_numbers" // Muestra todas las paginaciones disponibles
+                            });
+                        });
+
+                    </script>
+
+                    <table id="tabla-ficha">
+                        <thead>
+                            <tr>
+                                <th>Ficha</th>
+                                <th>Nombre del Programa</th>
+                                <th>Fecha y hora de entrada</th>
+                                <th>Fecha y hora de salida</th>
+                                <th>Instructor</th>
+                                <th>Detalle del permiso</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for resultado in resultados %}
+                            <tr>
+                                <td>{{ resultado[5] }}</td>
+                                <td>{{ resultado[8] }}</td>
+                                <td>{{ resultado[2] if resultado[2] is not none else 'No aplica' }}</td>
+                                <td>{{ resultado[1] if resultado[1] is not none else 'No aplica' }}</td>
+                                <td>{{ resultado[9] }}</td>
+                                <td>{{ resultado[3] }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+     
+
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ADMINISTRADOR</title>
+    <!-- <link rel="stylesheet" href="../static/css/coordinador.css"> -->
+    <link rel="stylesheet" href="../static/css/coorpersonas.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/coorpersonas.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.css') }}">
+    <link rel="icon" href="static/images/icon.png" type="image/png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="shortcut icon" href="static/images/icon.png" type="image/png">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
+    <!-- Incluir jQuery -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Incluir el JS de Select2 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+
+</head>
+
+<body>
+    <header>
+        <div class="header">
+
+            <div class="header-img">
+                <img id="logosena" src="{{ url_for('static', filename='img/logoblanco.png') }}" alt="Logo SENA">
+                <a href="{{ url_for('admin') }}"><label id="nombre_instructor">{{ usuario_nombre
+                        }}</label></a>
+
+            </div>
+
+
+        </div>
+
+    </header>
+
+    <main>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const mensaje = "{{ mensaje }}";
+                const icon = "{{ icon }}";
+
+                if (mensaje) {
+                    Swal.fire({
+                        title: mensaje,
+                        icon: icon
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "/";
+                        }
+                    });
+                }
+            });
+
+        </script>
+        {% include 'menuadmin.html' %}
+
+
+        <style>
+            /* Estilo de la tabla */
+            table {
+                width: 100%;
+                border-collapse: collapse;
+                margin-bottom: 20px;
+            }
+
+            /* Estilo de las celdas del encabezado */
+            th {
+                text-align: center;
+                padding: 10px;
+                border: 1px solid #ddd;
+            }
+
+            td {
+                border: 1px solid #ddd;
+                padding: 10px;
+
+            }
+
+            /* Estilo de las celdas de datos */
+            td {
+                padding: 10px;
+            }
+
+            /* Estilo para las filas alternas */
+            tr:nth-child(even) {
+                background-color: #f9f9f9;
+            }
+
+            /* Estilo para el botón de eliminar */
+            button {
+                background-color: #ff4d4d;
+                color: #fff;
+                padding: 5px 10px;
+                border: none;
+                cursor: pointer;
+            }
+
+            /* Estilo para el botón de editar (puedes agregar más estilos según sea necesario) */
+            .cuerpo a {
+                display: inline-block;
+                padding: 5px 10px;
+                background-color: #4CAF50;
+                color: white;
+                text-decoration: none;
+            }
+
+            /* Efecto hover para las filas */
+            tr:hover {
+                background-color: #f0f0f0;
+            }
+
+            /* Efecto hover para los botones de eliminar y editar */
+            button:hover,
+            a:hover {
+                background-color: #d44d4d;
+            }
+        </style>
+
+        <div class="contenedor2">
+            <div class="form">
+                <div class="cuerpo">
+                    <!-- Agrega estas líneas para incluir DataTables y el idioma español -->
+                    <link rel="stylesheet" type="text/css"
+                        href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.css">
+
+                    <!-- JavaScript de jQuery (necesario para DataTables) -->
+                    <script type="text/javascript" charset="utf8"
+                        src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+                    <!-- JavaScript de DataTables -->
+                    <script type="text/javascript" charset="utf8"
+                        src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.js"></script>
+
+                    <script type="text/javascript">
+                        $(document).ready(function () {
+                            $('#miTabla').DataTable({
+                                "language": {
+                                    "lengthMenu": "Mostrar _MENU_ registros por página",
+                                    "zeroRecords": "No se encontraron registros",
+                                    "info": "Mostrando página _PAGE_ de _PAGES_",
+                                    "infoEmpty": "No hay registros disponibles",
+                                    "infoFiltered": "(filtrado de _MAX_ registros totales)",
+                                    "search": "Buscar:",
+                                    "paginate": {
+                                        "first": "Primero",
+                                        "last": "Último",
+                                        "next": "Siguiente",
+                                        "previous": "Anterior"
+                                    },
+                                },
+                                "lengthMenu": [[10, 25, 50, -1], [10, 25, 50, "Todos"]],
+                                "pageLength": 10,
+                                // Permite el desplazamiento horizontal
+
+                                "scrollY": "calc(80vh - 100px)", // Fija la altura del área de desplazamiento
+                                "pagingType": "full_numbers" // Muestra todas las paginaciones disponibles
+                            });
+                        });
+
+                    </script>
+                    <table id="miTabla">
+                        <thead>
+                            <tr>
+                                <th>ID Persona</th>
+                                <th>Nombre</th>
+                                <th>Cargo/Estado</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Itera sobre los datos y llena la tabla -->
+                            {% for row in data %}
+                            <tr>
+                                <td>{{ row[0] }}</td>
+                                <td>{{ row[1] }}</td>
+                                <td>
+                                    <select class="rol-select" data-cedula="{{ row[0] }}">
+                                        <option value="0" {% if row[2]==0 %}selected{% endif %}>Aprendiz</option>
+                                        <option value="2" {% if row[2]==2 %}selected{% endif %}>Funcionarios</option>
+                                        <option value="3" {% if row[2]==3 %}selected{% endif %}>Administrador</option>
+                                        <option value="4" {% if row[2]==4 %}selected{% endif %}>Inactivo</option>
+                                    </select>
+                                </td>
+                                <td
+                                    style="text-align: center; color: {% if row[2] == 4 %}red{% else %}green{% endif %};">
+                                    {{ 'INACTIVO' if row[2] == 4 else 'ACTIVO' }}
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <script>
+                        document.querySelectorAll('.rol-select').forEach(select => {
+                            select.addEventListener('change', function () {
+                                const cedula = this.getAttribute('data-cedula'); // Obtiene la cédula del usuario
+                                const nuevoRol = this.value; // Obtiene el nuevo valor del select
+
+                                // Enviar solicitud AJAX para actualizar el rol en la base de datos
+                                fetch('/actualizar-rol', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json',
+                                        'X-CSRFToken': '{{ csrf_token }}'  // Si estás usando CSRF en tu aplicación
+                                    },
+                                    body: JSON.stringify({ cedula: cedula, nuevo_rol: nuevoRol })
+                                })
+                                    .then(response => response.json())
+                                    .then(data => {
+                                        if (data.success) {
+                                            // Actualizar el estado dinámicamente según el rol
+                                            const estadoCell = this.parentElement.nextElementSibling;
+                                            if (nuevoRol == 4) {
+                                                estadoCell.style.color = 'red';
+                                                estadoCell.textContent = 'INACTIVO';
+                                            } else {
+                                                estadoCell.style.color = 'green';
+                                                estadoCell.textContent = 'ACTIVO';
+                                            }
+
+                                            // alert('id actualizado correctamente');
+                                            window.location.reload();
+                                        } else {
+                                            alert('Error al actualizar el rol');
+                                        }
+                                    })
+                                    .catch(error => {
+                                        console.error('Error:', error);
+                                    });
+                            });
+                        });
+
+                    </script>
+
+                    <script>
+                        function confirmarEliminacion(nombre) {
+                            return confirm("¿Estás seguro de que deseas eliminar a '" + nombre + "'?");
+                        }
+                    </script>
+
+
+                    <button id="btnAgregarUsuario">Agregar Usuario</button>
+
+                    <!-- Modal para agregar usuario -->
+                    <div id="modalAgregarUsuario" class="modal">
+                        <div class="modal-content">
+                            <!-- Contenido del formulario para agregar usuario -->
+                            <h2>Agregar un Nuevo Usuario</h2>
+                            <form id="formularioAgregarUsuario" method="post" action="{{ url_for('agregar_usuario') }}">
+                                <!-- Campo ID -->
+                                <label for="id">Identificación:</label>
+                                <input type="number" id="id" name="id" required autocomplete="off">
+
+                                <!-- Campo Nombre -->
+                                <label for="nombre">Nombre:</label>
+                                <input type="text" id="nombre" name="nombre" required autocomplete="off">
+
+                                <!-- Campo Estrato -->
+                                <label for="estrato">Estrato:</label>
+                                <select id="estrato" name="estrato" required>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                </select>
+
+                                <!-- Campo Centros -->
+                                <label for="centro">Centro:</label>
+                                <select id="centro" name="centro" required>
+                                    <option value="" disabled selected>Selecciona un centro</option>
+                                    {% for centro in centros %}
+                                    <option value="{{ centro[0] }}">{{ centro[1] }}</option>
+                                    {% endfor %}
+                                </select>
+
+                                <!-- Campo Rol -->
+                                <label for="rol">Rol:</label>
+                                <select id="rol" name="rol" required>
+                                    <option value="0">Aprendiz</option>
+                                    <option value="2">Funcionario</option>
+                                    <option value="3">Administrador</option>
+                                    <option value="4">Inactivo</option>
+                                </select>
+
+                                <!-- Botones -->
+                                <button id="btnGuardarUsuario" type="submit">Registrar</button>
+                                <button id="btnCerrarModal" type="button">Cerrar</button>
+                            </form>
+
+                        </div>
+                    </div>
+
+
+
+                    <script>
+                        document.getElementById('btnCerrarModal').addEventListener('click', function (event) {
+                            event.preventDefault(); // Prevenir el envío del formulario
+                            // Puedes agregar aquí cualquier otra lógica que necesites al hacer clic en "Cerrar"
+                        });
+                        document.getElementById('btnAgregarUsuario').addEventListener('click', function () {
+                            // Muestra el modal al hacer clic en el botón
+                            document.getElementById('modalAgregarUsuario').style.display = 'flex';
+                        });
+
+                        document.getElementById('btnCerrarModal').addEventListener('click', function () {
+                            // Cierra el modal al hacer clic en el botón de cerrar
+                            document.getElementById('modalAgregarUsuario').style.display = 'none';
+                        });
+                    </script>
+                    <style>
+                        #btnAgregarUsuario {
+                            position: absolute;
+                            top: 3%;
+                            right: 32px;
+                            background-color: #fff;
+                            color: black;
+                            padding: 10px 20px;
+                            border: none;
+                            cursor: pointer;
+                        }
+
+                        .modal {
+                            display: none;
+                            position: fixed;
+                            top: 0;
+                            left: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(0, 0, 0, 0.5);
+                            justify-content: center;
+                            align-items: center;
+                        }
+
+                        .modal-content {
+                            background-color: #fff;
+                            padding: 20px;
+                            border-radius: 5px;
+                        }
+
+                        #formularioAgregarUsuario {
+                            width: 300px;
+                            margin: 0 auto;
+                            padding: 20px;
+                            background-color: #f0f0f0;
+                            border-radius: 10px;
+                        }
+
+                        #formularioAgregarUsuario input[type="number"],
+                        #formularioAgregarUsuario input[type="text"],
+                        #formularioAgregarUsuario select {
+                            width: 100%;
+                            padding: 8px;
+                            margin-bottom: 10px;
+                            border: 1px solid #ccc;
+                            border-radius: 5px;
+                            box-sizing: border-box;
+                            /* Para incluir el padding en el ancho total */
+                        }
+
+                        #btnCerrarModal {
+                            background-color: #ff4d4d;
+                            color: white;
+                            padding: 10px 15px;
+                            border: none;
+                            cursor: pointer;
+                            margin-top: 10px;
+                        }
+
+                        #btnGuardarUsuario {
+                            background-color: #4CAF50;
+                            color: white;
+                            padding: 10px 15px;
+                            border: none;
+                            cursor: pointer;
+                            margin-top: 10px;
+                        }
+                    </style>
+
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer>
+
+    </footer>
+</body>
+
+</html>

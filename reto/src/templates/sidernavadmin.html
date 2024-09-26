@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Administrador</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="../static/css/admin.css">
+    <link rel="stylesheet" href="../static/css/root.css">
+    <link rel="icon" href="../static/img/logosenanegro.svg" type="image/png">
+    <link rel="shortcut icon" href="../static/img/logosenanegro.svg" type="image/png">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+    <style>
+        ion-icon {
+            font-size: 20px;
+            font-weight: bold;
+            /* background-color: red; */
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h4 class="text-center text-black mb-3">{{ nombre }}</h4>
+        <a href="#dashboard"><ion-icon name="bicycle-outline"></ion-icon> Inicio</a>
+        <a href="#usuarios"><i class="fas fa-users"></i> Historial de alquiler</a>
+        <a href="#config"><i class="fas fa-cogs"></i> Configuración</a>
+        <!-- <a href="#reportes"><i class="fas fa-chart-line"></i> Reportes</a> -->
+        <a href="{{ url_for('logout') }}" id="logout"><i class="fas fa-sign-out-alt"></i> Cerrar Sesión</a>
+    </div>
+
+    <nav class="navbar navbar-expand-lg navbar-custom">
+        <div class="container-fluid">
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Perfil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Soporte</a>
+                    </li>
+                </ul>
+                <form class="d-flex" onsubmit="return false;">
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Buscar"
+                        aria-label="Search" style="font-size: 14px;" oninput="filterGallery()">
+                    <button class="btn btn-outline-light" type="submit" style="font-size: 14px;">Buscar</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

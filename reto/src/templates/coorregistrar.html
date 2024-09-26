@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ADMINISTRADOR</title>
+  <link rel="stylesheet" href="../css/coorregistrar.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/root.css') }}">
+  <link rel="stylesheet" href="../fontawesome-free-6.4.2-web/css/all.css">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/coorregistrar.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='fontawesome-free-6.4.2-web/css/all.css') }}">
+  <link rel="icon" href="static/images/icon.png" type="image/png">
+  <link rel="shortcut icon" href="static/images/icon.png" type="image/png">
+  <script src="{{ url_for('static', filename='js/coordinador.js') }}"></script>
+
+</head>
+
+<body>
+  <!-- ventana container emergente -->
+
+  <div class="container2">
+
+    <div class="form2" method="post" enctype="multipart/form-data">
+      <div class="encabezado2">
+        <div class="h2">
+          <h1>REGISTRO</h1>
+        </div>
+        <div class="logosena2">
+          <img id="logosena" src="{{ url_for('static', filename='img/logosenaverde.svg') }}" alt="Logo SENA">
+
+        </div>
+      </div>
+
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        {% if mensaje %}
+        Swal.fire({
+          title: "{{ mensaje }}",
+          icon: "{{ icon }}"
+        });
+        {% endif %}
+      </script>
+      <div class="cuerpo2">
+        <a class="cerrar" onclick="cerrarEmergentes2()">x</a>
+        <div class="cuerpo-recuperacion2">
+          <form action="/procesar" method="post" enctype="multipart/form-data">
+            <label for="nombre" class="nombre2"> Suba el archivo excel</label><br>
+            <input type="file" name="archivo" accept=".xls, .xlsx">
+
+            <button id="boton" type="submit" value="Subir Archivo">SUBIR</button>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <!-- ventana container emergente2 -->
+
+  <!-- ------------------------- -->
+  <header>
+    <div class="header">
+
+      <div class="header-img">
+        <img id="logosena" src="{{ url_for('static', filename='img/logoblanco.png') }}" alt="Logo SENA">
+        <a href="{{ url_for('admin') }}"><label id="nombre_instructor">{{ usuario_nombre
+            }}</label></a>
+
+      </div>
+
+      <div class="header-navbar">
+
+        <nav>
+          <ul>
+
+
+          </ul>
+        </nav>
+
+      </div>
+
+    </div>
+
+  </header>
+
+  <main>
+    {% if mensaje %}
+    <div class="alert alert-{{ icon }}" role="alert">
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+      <script>
+        {% if mensaje %}
+        Swal.fire({
+          title: "{{ mensaje }}",
+          icon: "{{ icon }}"
+        });
+        {% endif %}
+      </script>
+    </div>
+    {% endif %}
+    {% include 'menuadmin.html' %}
+
+    <div class="contenedor2">
+
+      <div class="caja">
+        <div class="caja-contenedor">
+          <a onclick="desplegable2()" id="amikos"><img src="{{ url_for('static', filename='img/amikos.png') }}" alt="">
+            <div class="caja-contenedor-text">Carga Masiva</div>
+          </a>
+        </div>
+      </div>
+
+      <div class="caja">
+        <div class="caja-contenedor">
+          <a href="{{ url_for('coorpersonas') }}"><img src="{{ url_for('static', filename='img/fotos.png') }}" alt="">
+            <div class="caja-contenedor-text">Usuarios</div>
+          </a>
+        </div>
+      </div>
+
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function () {
+        // Función para llamar al servidor y mostrar la alerta
+        function mostrarAlerta() {
+          $.ajax({
+            type: "GET",
+            url: "/procesar",
+            success: function (response) {
+              // Mostrar la alerta utilizando SweetAlert2
+              Swal.fire({
+                title: response.message,
+                icon: response.icon
+              });
+            },
+            error: function (error) {
+              console.log("Error al llamar al servidor:", error);
+            }
+          });
+        }
+
+        // Llamar a la función automáticamente cuando se carga la página
+        mostrarAlerta();
+      });
+    </script>
+  </main>
+
+  <footer>
+
+  </footer>
+</body>
+
+</html>

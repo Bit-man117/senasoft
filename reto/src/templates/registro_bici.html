@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Bicicleta</title>
+</head>
+<body>
+    <h1>Registrar Bicicleta</h1>
+    <form action="/register" method="post" enctype="multipart/form-data">
+        <label for="marca">Marca:</label>
+        <input type="text" id="marca" name="marca" required><br><br>
+
+        <label for="color">Color:</label>
+        <input type="text" id="color" name="color" required><br><br>
+
+        <label for="tarifa">Tarifa:</label>
+        <input type="number" step="0.01" id="tarifa" name="tarifa" required><br><br>
+
+        <label for="estado">Estado:</label>
+        <select id="estado" name="estado" required>
+            <option value="0">Disponible</option>
+            <option value="1">No Disponible</option>
+        </select><br><br>
+
+        <label for="id_centro">Centro:</label>
+        <select id="id_centro" name="id_centro" required>
+            {% for centro in asociar_centro %}
+                <option value="{{ centro[0] }}">{{ centro[1] }}</option>
+            {% endfor %}
+        </select><br><br>
+
+        <label for="foto">Foto:</label>
+        <input type="file" id="foto" name="foto" accept="image/*" required><br><br>
+
+        <input type="submit" value="Registrar Bicicleta">
+    </form>
+</body>
+</html>
+
+

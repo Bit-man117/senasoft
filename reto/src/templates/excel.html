@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/excel.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        function obtenerDatosAprendices() {
+            var datosAprendices = [];
+            var table = document.querySelector('.importacion-cuerpo-encabezado2 table');
+            for (var i = 1; i < table.rows.length; i++) {
+                var documento = table.rows[i].cells[0].innerText;
+                var nombre = table.rows[i].cells[1].innerText;
+                datosAprendices.push({ "documento": documento, "nombre": nombre });
+            }
+            return datosAprendices;
+        }
+
+        function agregarDatos() {
+            fetch('/agregar_datos', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    programa: document.getElementsByName("info_celda_C6")[0].value,
+                    id_ficha: document.getElementsByName("info_celda_C3")[0].value,
+                    fecha_inicio: document.getElementsByName("info_celda_C8")[0].value,
+                    fecha_fin: document.getElementsByName("info_celda_C9")[0].value,
+                    jornada: document.querySelector('input[name="value-radio"]:checked').value,
+                    datosAprendices: obtenerDatosAprendices() // Ensure this function is defined above
+                })
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.error) {
+                        Swal.fire({
+                            icon: 'error',
+                            text: data.error,
+                            confirmButtonText: 'Ok'
+                        });
+                    } else {
+                        Swal.fire({
+                            icon: 'success',
+                            text: 'Se ha registrado una nueva ficha exitosamente.',
+                            confirmButtonText: 'Ok'
+                        }).then(() => {
+                            window.location.href = '/coorregistrar';
+                        });
+                    }
+                });
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="importacion">
+        <div class="importacion-cuerpo">
+            <div class="importacion-centrar">
+                <div class="importacion-cuerpo-encabezado">
+                    <div style="width: 55%;">
+                        <label id="importacionlabel" style="margin-left: 2%;" for="">Centro Formativo:</label>
+                        <input style="width: 40%;" class="importacion-input" type="text" name="info_celda_C6"
+                            value="{{ info_celda_C6 }}" disabled>
+                        <label id="importacionlabel" for="">Codigo:</label>
+
+                        <input type="hidden" name="info_celda_C3" value="{{ info_celda_C3 }}">
+                        <!-- Add hidden inputs for the other disabled fields as necessary -->
+
+                    </div>
+                    <div style="width: 45%;">
+                        <label id="importacionlabel" for="">Fecha Inicio:</label>
+                        <input class="importacion-input" style="width: 25%;" type="text" name="info_celda_C8"
+                            value="{{ info_celda_C8 }}" disabled>
+                        <label id="importacionlabel" for="">Fecha Fin:</label>
+                        <input class="importacion-input" style="width: 30%;" type="text" name="info_celda_C9"
+                            value="{{ info_celda_C9 }}" disabled>
+                    </div>
+                </div>
+                <div class="importacion-cuerpo-encabezado2">
+                    <table border="1">
+                        <tr>
+                            <th>N. Documento</th>
+                            <th>Nombres y Apellidos</th>
+                        </tr>
+                        {% for fila in datos %}
+                        <tr>
+                            <td style="text-align: center;">{{ fila[0] }}</td>
+                            <td colspan="2">{{ fila[1] }} {{ fila[2] }}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="importacion-cuerpo-encabezado3">
+                    <div class="radio-input">
+                        <input value="1" name="value-radio" id="aprendices" type="radio" checked>
+                        <label for="aprendices">Aprendices</label>
+                        <input value="2" name="value-radio" id="funcionarios" type="radio">
+                        <label for="funcionarios">Funcionarios</label>
+                    </div>
+                    <button id="boton" onclick="agregarDatos()">Agregar</button>
+                    <a href="{{ url_for('coorregistrar') }}"><button id="boton2">Cancelar</button></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

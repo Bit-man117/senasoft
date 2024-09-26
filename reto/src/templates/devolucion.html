@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bicicletas Alquiladas</title>
+    <link rel="stylesheet" href="https://path/to/your/styles.css"> <!-- Si tienes un CSS -->
+</head>
+<body>
+    <h1>Bicicletas Alquiladas</h1>
+    <div id="galeria-bicicletas" class="gallery">
+        <!-- Las bicicletas alquiladas se insertarán aquí dinámicamente -->
+    </div>
+
+    <script>
+        function cargarBicicletasAlquiladas() {
+            fetch('/bicicletas_alquiladas')
+                .then(response => response.json())
+                .then(data => {
+                    const galeria = document.getElementById('galeria-bicicletas');
+                    galeria.innerHTML = '';  // Limpiar el contenedor
+
+                    data.forEach(bici => {
+                        const item = document.createElement('div');
+                        item.className = 'gallery-item active';
+                        item.innerHTML = `
+                            <img src="data:image/jpeg;base64,${bici.foto}" alt="Imagen de ${bici.marca}">
+                            <p class="description">${bici.marca}</p>
+                            <p class="description">Tarifa: ${bici.tarifa}</p>
+                            <button class="solicitar-btn" onclick="devolverBicicleta(${bici.id_bicicleta})">Devolución</button>
+                        `;
+                        galeria.appendChild(item);
+                    });
+                })
+                .catch(error => console.error('Error al cargar bicicletas:', error));
+        }
+
+        function devolverBicicleta(id_bicicleta) {
+            fetch(`/devolver/${id_bicicleta}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    alert('Bicicleta devuelta exitosamente.');
+                    cargarBicicletasAlquiladas();  // Recargar las bicicletas
+                } else {
+                    alert('Error al devolver la bicicleta: ' + data.message);
+                }
+            })
+            .catch(error => console.error('Error en la solicitud:', error));
+        }
+
+        // Cargar las bicicletas al cargar la página
+        window.onload = cargarBicicletasAlquiladas;
+    </script>
+</body>
+</html>

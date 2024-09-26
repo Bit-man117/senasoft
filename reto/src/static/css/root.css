@@ -1,0 +1,38 @@
+:root {
+    /* Color primario */
+    --color-base: #4e8e37;
+    --color-base-hover: #5fa73d;
+    --color-base-fuente: #ffffff;
+    /* Color secundario */
+    --secondary-color: white;
+    /* Color de acento */
+    --accent-color: #e74c3c;
+    /* Color de fondo */
+    --background-color: #ecf0f1;
+    /* Color de texto principal */
+    --text-color: #ffffff;
+    /* Color de texto claro */
+    --text-light-color: #95a5a6;
+
+    /* Fondos */
+    --background-gradient: linear-gradient(rgba(255, 255, 255, 0), #ffffff8b);
+    --background-image-url: url(../img/senafondo3.webp);
+    --background-size: cover;
+    --background-position: center;
+    --background-repeat: no-repeat;
+}
+
+input[type='number'] {
+    -moz-appearance: textfield;
+    /* Firefox */
+    appearance: textfield;
+    /* Chrome, Safari, Edge */
+}
+
+input[type='number']::-webkit-inner-spin-button,
+input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    /* Chrome, Safari */
+    margin: 0;
+    /* Para eliminar el margen */
+}

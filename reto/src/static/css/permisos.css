@@ -1,0 +1,299 @@
+body {
+    background-image: linear-gradient(rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.671)), var(--background-image-url);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    /* Mantiene la imagen de fondo fija */
+    font-family: 'Poppins', sans-serif;
+    backdrop-filter: blur(5px);
+    margin: 0%;
+    min-height: 100vh;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px;
+
+    }
+
+    #atras {
+        display: none;
+    }
+
+    .container {
+        padding: 20px;
+        max-width: 100%;
+    }
+
+    .form-row {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-inline-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .inline-group {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .form-inline {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #btnAtras {
+        top: 15px;
+        left: 10px;
+        height: 40px;
+    }
+
+    .form-group label {
+        font-size: 14px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .form-group button {
+        padding: 10px;
+        font-size: 14px;
+    }
+
+    .form-group textarea {
+        min-height: 80px;
+    }
+
+    #suggestions {
+        font-size: 14px;
+    }
+
+    #suggestions li {
+        padding: 10px;
+    }
+}
+
+/* Botón para volver a la página principal en responsive */
+#btnVolver {
+    display: none;
+    /* Oculto por defecto */
+    font-size: 14px;
+    color: var(--color-base-fuente);
+    background-color: var(--color-base);
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    text-align: center;
+    margin: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+    #btnVolver {
+        display: block;
+        /* Mostrar solo en pantallas pequeñas */
+    }
+}
+
+
+#suggestions {
+    list-style: none;
+    padding: 0;
+    max-height: 150px;
+
+    border: 1px solid #ccc;
+
+    background-color: #fff;
+}
+
+#suggestions li {
+    padding: 1.5%;
+    cursor: pointer;
+}
+
+#suggestions li:hover {
+    font-weight: bold;
+    background-color: #4e8e373f;
+}
+
+/* Estilo para los campos con error */
+input:invalid,
+select:invalid,
+textarea:invalid {
+    border: 2px solid rgba(255, 0, 0, 0.435);
+}
+
+input:valid,
+select:valid,
+textarea:valid {
+    border: 2px solid green;
+}
+
+.error {
+    border: 2px solid red;
+}
+
+
+.container {
+    overflow: auto;
+    max-width: 700px;
+    margin: 0 auto;
+    background: #ffffffe8;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px;
+    /* border: 1px solid #ddd; */
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.form-group input[disabled] {
+    background-color: #e9ecef;
+    cursor: not-allowed;
+}
+
+.form-group button {
+
+    padding: 12px 20px;
+    border: none;
+    background-color: var(--color-base);
+    color: var(--color-base-fuente);
+    cursor: pointer;
+    border-radius: 6px;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.form-group #btn {
+    width: 100%;
+}
+
+.form-group button:hover {
+    background-color: var(--color-base-hover);
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-row .form-group.name {
+    flex: 2;
+    /* Hacer el campo de Nombre más grande */
+}
+
+.form-group textarea {
+    resize: none;
+    min-height: 100px;
+}
+
+.form-inline {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-inline input {
+    flex: 1;
+}
+
+.hidden {
+    /* display: none; */
+}
+
+/* Estilo para los inputs en línea para la opción 3 */
+.inline-group {
+    display: flex;
+    gap: 20px;
+}
+
+.inline-group .form-group {
+    flex: 1;
+    min-width: 150px;
+    /* Ajustar según sea necesario */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* --------- */
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.form-row .form-group.name {
+    flex: 2;
+}
+
+.inline-group {
+    display: flex;
+    gap: 20px;
+}
+
+.inline-group .form-group {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* Estilo para mantener el concepto y adjuntar archivo en la misma línea */
+.form-inline-group {
+    display: flex;
+    gap: 20px;
+}
+
+.form-inline-group .form-group {
+    flex: 1;
+}
+
+#btnAtras {
+    position: absolute;
+    top: 30px;
+    left: 20px;
+    float: left;
+    width: auto;
+    height: 50px;
+    cursor: pointer;
+}
