@@ -486,3 +486,49 @@
      transition: transform 0.3s ease;
      /* Asegúrate de agregar una transición suave */
  }
+
+ @media only screen and (max-width: 768px) {
+     .sect-izquierda {
+         display: none;
+
+     }
+
+     .sect-derecha {
+         display: flex;
+         width: 100%;
+         align-items: center;
+         justify-content: center;
+
+         /* justify-content: left; */
+         /* width: 100%; */
+     }
+
+     .container {
+         width: 50%;
+     }
+
+     .btn-permisos:hover {
+         width: 70%;
+         transform: translateX(-30%);
+     }
+
+     .btn-consulta:hover {
+         width: 50%;
+         /* transform: translateX(-30%); */
+     }
+
+     .btn-consulta {
+         transform: translateX(-30%);
+         width: 70%;
+     }
+
+     .btn-permisos {
+         transform: translateX(-30%);
+         width: 70%;
+         /* margin-right: -25%; */
+         font-size: 15px;
+         position: absolute;
+         right: 0;
+
+     }
+ }

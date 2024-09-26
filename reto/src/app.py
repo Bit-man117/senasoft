@@ -167,6 +167,17 @@ def admin():
         return redirect('/')
      
 
+@app.route('/totalventas')
+def totalventas():
+    if 'rol' in session and session['rol'] == 3:  # Esto permite el acceso a los administradores
+        usuario_datos = session.get('nombre')
+        response = make_response(render_template('total_ventas.html', usuario_nombre=usuario_datos))
+        response.headers['Cache-Control'] = 'no-cache, no-store, must-revalidate'  # Deshabilitar la caché
+        return response
+    else:
+        flash('Acceso no autorizado', 'error')
+        return redirect('/')
+
 
 @app.route('/coorregistrar')
 def coorregistrar():
