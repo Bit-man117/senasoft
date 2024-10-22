@@ -164,7 +164,7 @@ def admin():
         return response
     else:
         flash('Acceso no autorizado', 'error')
-        return redirect('/')
+        return redirect('/') 
      
 
 @app.route('/totalventas')
