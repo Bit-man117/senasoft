@@ -28,9 +28,9 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <h4 class="text-center text-black mb-3">{{ nombre }}</h4>
-        <a href="#dashboard"><ion-icon name="bicycle-outline"></ion-icon> Home</a>
+        <a href="{{url_for('inicio')}}"><ion-icon name="bicycle-outline"></ion-icon> Home</a>
         <a href="#usuarios"><i class="fas fa-users"></i> Rent History</a>
-        <a href="#config"><i class="fas fa-cogs"></i> Configuration</a>
+        <a href="#config"><i class="fas fa-cogs"></i>Settings</a>
         <!-- <a href="#reportes"><i class="fas fa-chart-line"></i> Reportes</a> -->
         <a href="{{ url_for('logout') }}" id="logout"><i class="fas fa-sign-out-alt"></i> Log Out</a>
     </div>
@@ -44,15 +44,15 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
+                    <!-- <li class="nav-item">
                         <a class="nav-link" href="#">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
+                        <a class="nav-link" href="#">PRofile</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#">Help</a>
-                    </li>
+                    </li> -->
                 </ul>
                 <form class="d-flex" onsubmit="return false;">
                     <input class="form-control me-2" type="search" id="searchInput" placeholder="Search"

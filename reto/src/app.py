@@ -692,7 +692,9 @@ def obtener_alquileres():
     finally:
         cursor.close()
         connection.close()
-
+@app.route("/inicio")
+def inicio():
+    return render_template("index.html")
  
 
 
