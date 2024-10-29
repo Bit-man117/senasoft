@@ -53,7 +53,7 @@
                 <img src="data:image/jpeg;base64,{{ evento[3] }}" alt="{{ evento[1] }}" class="evento-foto">
                 <!-- Foto del evento en base64 -->
                 <p class="description">{{ evento[1] }}: {{ evento[2] }}</p> <!-- Nombre y fecha del evento -->
-                <button class="solicitar-btn">Ver mas</button> <!-- Botón para solicitar -->
+                <button class="solicitar-btn">See More</button> <!-- Botón para solicitar -->
             </div>
             {% endfor %}
 
@@ -81,22 +81,22 @@
     </div>
 
     <div class="sect-derecha">
-        <a href="{{ url_for('disponibles') }}" class="btn-permisos">Ver bicicletas Disponibles</a>
-        <a href="#" class="consultar-permiso btn-consulta">Ver centros regionales</a>
+        <a href="{{ url_for('disponibles') }}" class="btn-permisos">Watch Avalaible bikes</a>
+        <a href="#" class="consultar-permiso btn-consulta">Watch a regional Centers</a>
 
         <div class="container">
-            <h1>Bienvenido</h1>
+            <h1>Welcome</h1>
             <form action="/login" id="login-form" method="POST">
                 <div class="form-login">
-                    <label for="usernames">Usuario</label>
-                    <input type="number" id="username" name="usuario" placeholder="Ingresa tu usuario" required>
+                    <label for="usernames">User</label>
+                    <input type="number" id="username" name="usuario" placeholder="Write Your User" required>
                 </div>
                 <div class="form-login">
-                    <label for="passwords">Contraseña</label>
-                    <input type="password" id="password" name="password" placeholder="Ingresa tu contraseña" required>
+                    <label for="passwords">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Write Your Password" required>
                 </div>
                 <div id="mensaje-error"></div>
-                <input type="submit" value="Iniciar Sesión" class="btn">
+                <input type="submit" value="Log In" class="btn">
             </form>
         </div>
         <footer class="footer">
@@ -115,7 +115,7 @@
                 &copy;
                 <script>
                     document.write(new Date().getFullYear())
-                </script>, SENABYKE desarrollado por <br> <a href="#"
+                </script>, SENABYKE Development By <br> <a href="#"
                     style="text-decoration: none; color: var(--color-base);"><strong>Miguel Jaimes y Andres
                         Muñoz</strong></a>
 

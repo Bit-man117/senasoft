@@ -49,9 +49,9 @@
             <div class="gallery-item active">
                 <img src="data:image/jpeg;base64,{{ bici[6] }}" alt="{{ bici[1] }}" class="img-fluid">
                 <p class="description">{{ bici[1] }}</p>
-                <p class="description">Tarifa: ${{ bici[3] }}</p>
+                <p class="description">Price: ${{ bici[3] }}</p>
                 <button class="solicitar-btn btn btn-primary"
-                    onclick="alquilarBicicleta({{ bici[0] }})">Solicitar</button> <!-- ID de la bicicleta -->
+                    onclick="alquilarBicicleta({{ bici[0] }})">Rent</button> <!-- ID de la bicicleta -->
             </div>
             {% endfor %}
         </div>

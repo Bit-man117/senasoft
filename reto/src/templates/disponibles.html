@@ -25,15 +25,15 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ url_for('index') }}">Inicio</a>
+                        <a class="nav-link" href="{{ url_for('index') }}">Home</a>
                     </li>
 
 
                 </ul>
                 <form class="d-flex" onsubmit="return false;">
-                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Buscar"
+                    <input class="form-control me-2" type="search" id="searchInput" placeholder="Search"
                         aria-label="Search" style="font-size: 14px;" oninput="filterGallery()">
-                    <button class="btn btn-outline-light" type="submit" style="font-size: 14px;">Buscar</button>
+                    <button class="btn btn-outline-light" type="submit" style="font-size: 14px;">Search</button>
                 </form>
             </div>
         </div>
@@ -74,7 +74,7 @@
             <div class="gallery-item  active ">
                 <img src="data:image/jpeg;base64,{{ bici[6] }}" alt="{{ bici[1] }}">
                 <p class="description">{{ bici[1] }}</p> <!-- Marca -->
-                <p class="description">Tarifa: ${{ bici[3] }}</p> <!-- Tarifa -->
+                <p class="description">Price: ${{ bici[3] }}</p> <!-- Tarifa -->
                 <!-- Dentro del bucle que muestra las bicicletas -->
                 <!-- <button class="solicitar-btn" onclick="solicitarAlquiler({{ bici[0] }})">Solicitar</button> -->
 
